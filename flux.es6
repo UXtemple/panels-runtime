@@ -9,12 +9,23 @@ export default class PanelsFlux extends Flux {
 
     this.createActions('router', PanelsRouter.Actions);
     this.createStore('router', PanelsRouter.Store, this);
-    this.history = PanelsRouter.history(this);
+    this.history = PanelsRouter.history(this, this.setDocumentTitle.bind(this));
 
     this.createActions('panels', PanelsStore.Actions);
     this.createStore('panels', PanelsStore.Store, this);
 
     this.createActions('types', PanelsTypes.Actions);
     this.createStore('types', PanelsTypes.Store, this);
+
+    const router = this.getStore('router');
+    router.once('change', () => this.setDocumentTitle(router.lastPanelUri));
+  }
+
+  setDocumentTitle(lastPanelUri, fullUri) {
+    try {
+      window.document.title = this.getStore('panels').getByUri(lastPanelUri).title;
+    } catch(exception) {
+      console.error(exception);
+    }
   }
 }

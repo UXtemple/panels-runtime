@@ -9,4 +9,4 @@ PG=./playground
   -r panels-ui/blocks \
   -v -o $PG/vendor.js ./package.json &
 ./node_modules/.bin/livereloadify $PG &
-./node_modules/.bin/static $PG --port 3000 --cache 0
+sudo .bin/server.es6

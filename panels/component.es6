@@ -4,7 +4,7 @@ import React from 'react';
 
 export default class Panels extends React.Component {
   render() {
-    const panels = this.props.keys.map(uri => <PanelContainer key={uri} uri={uri} />);
+    const panels = this.props.keys.map((uri, i) => <PanelContainer key={`${uri}@${i}`} uri={uri} index={i} />);
 
     return <PanelsUi>{panels}</PanelsUi>;
   }

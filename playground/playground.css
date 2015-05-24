@@ -1,0 +1,26 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+}
+
+a,
+div,
+img,
+h1,
+h2,
+p,
+span {
+  box-sizing: border-box;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+
+  border: 0 solid black;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+console.log(
+  Object.keys(require('../package.json').dependencies).
+    reduce(function(all, key) {
+      return all + ' -r ' + key;
+    }, '')
+);

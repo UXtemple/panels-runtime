@@ -60,7 +60,7 @@ export const PANELS = [{
     id: 'b0ef500a-d7c7-4e8c-b253-7b3651d10fb7',
     type: 'Action',
     data: {
-      href: 'http://usepanels.com.dev/http://router.usepanels.com.dev/',
+      href: 'http://router.usepanels.com.dev/',
       title: 'Router'
     },
     style: {
@@ -77,21 +77,21 @@ export const PANELS = [{
     id: '55d871bb-ef7b-48fc-b4b2-b3936674ed6c',
     type: 'Action',
     data: {
-      href: 'http://usepanels.com.dev/http://store.usepanels.com.dev/',
+      href: 'http://store.usepanels.com.dev/',
       title: 'Store'
     }
   }, {
     id: '9d6a0b0f-a674-4eab-a01d-a94ffabe9f90',
     type: 'Action',
     data: {
-      href: 'http://usepanels.com.dev/http://types.usepanels.com.dev/',
+      href: 'http://types.usepanels.com.dev/',
       title: 'Types'
     }
   }, {
     id: '9cf09c2c-9f8f-46c5-974e-f914da5f0aea',
     type: 'Action',
     data: {
-      href: 'http://usepanels.com.dev/http://ui.usepanels.com.dev/',
+      href: 'http://ui.usepanels.com.dev/',
       title: 'UI'
     }
   }]
@@ -108,7 +108,7 @@ export const PANELS = [{
     id: '75d871bb-ef7b-48fc-b4b2-b3936674ed6c',
     type: 'Action',
     data: {
-      href: 'http://usepanels.com.dev/http://router.usepanels.com.dev/http://usepanels.com.dev/',
+      href: 'http://usepanels.com.dev/',
       title: 'Panels (inception)'
     }
   }]

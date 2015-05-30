@@ -1,5 +1,11 @@
 # Change log
 
+## [0.2.0] - 2015-05-30
+### Added
+
+- "Forward URIs" to truly enable composition through teleports,
+- Set actions as active if a panel after theirs holds its URI.
+
 ## [0.1.0] - 2015-05-23
 ### Added
 

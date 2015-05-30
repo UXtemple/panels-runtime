@@ -5,10 +5,7 @@ import React from 'react';
 export default class PanelsContainer extends FluxComponent {
   get stores() {
     return {
-      router: store => ({
-        keys: store.keys,
-        uri: store.uri
-      })
+      router: store => ({keys: store.keys})
     };
   }
 

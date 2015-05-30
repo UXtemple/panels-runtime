@@ -10,11 +10,16 @@ export default class BlockContainer extends React.Component {
   }
 
   render() {
-    return <FluxComponent connectToStores={this.stores}><Component block={this.props.block} /></FluxComponent>;
+    return (
+      <FluxComponent connectToStores={this.stores}>
+        <Component block={this.props.block} currentUri={this.props.currentUri} />
+      </FluxComponent>
+    );
   }
 }
 
 BlockContainer.propTypes = {
+  currentUri: React.PropTypes.string.isRequired,
   block: React.PropTypes.shape({
     id: React.PropTypes.string.isRequired,
     type: React.PropTypes.string.isRequired,

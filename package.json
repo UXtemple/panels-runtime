@@ -1,6 +1,6 @@
 {
   "name": "panels-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Build apps on panels",
   "main": "index.js",
   "scripts": {
@@ -31,10 +31,10 @@
   "dependencies": {
     "flummox": "^4.0.0-alpha2",
     "immutable": "^3.7.3",
-    "panels-router": "^0.2.3",
+    "panels-router": "^0.3.0",
     "panels-store": "^0.1.1",
     "panels-types": "^0.1.0",
-    "panels-ui": "^0.1.4",
+    "panels-ui": "^0.1.5",
     "react": "^0.13.3"
   },
   "devDependencies": {

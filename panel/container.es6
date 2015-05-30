@@ -10,10 +10,11 @@ export default class PanelContainer extends React.Component {
   }
 
   render() {
-    return <FluxComponent connectToStores={this.stores}><Component /></FluxComponent>;
+    return <FluxComponent connectToStores={this.stores}><Component currentUri={this.props.currentUri} /></FluxComponent>;
   }
 }
 
 PanelContainer.propTypes = {
+  currentUri: React.PropTypes.string.isRequired,
   uri: React.PropTypes.string.isRequired
 }

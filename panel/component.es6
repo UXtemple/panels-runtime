@@ -6,13 +6,14 @@ export default class Panel extends React.Component {
   render() {
     let blocks = <span>loading...</span>;
     if (this.props.panel) {
-      blocks = this.props.panel.blocks.map(block => <BlockContainer key={block.id} block={block} />);
+      blocks = this.props.panel.blocks.map(block => <BlockContainer key={block.id} block={block} currentUri={this.props.currentUri} />);
     }
     return <PanelUi>{blocks}</PanelUi>;
   }
 }
 
 Panel.propTypes = {
+  currentUri: React.PropTypes.string.isRequired,
   panel: React.PropTypes.shape({
     uri: React.PropTypes.string.isRequired,
     blocks: React.PropTypes.arrayOf(React.PropTypes.shape({

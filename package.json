@@ -34,7 +34,7 @@
     "panels-router": "^0.3.0",
     "panels-store": "^0.1.1",
     "panels-types": "^0.1.0",
-    "panels-ui": "^0.1.5",
+    "panels-ui": "^0.1.6",
     "react": "^0.13.3"
   },
   "devDependencies": {

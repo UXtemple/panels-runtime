@@ -3,7 +3,26 @@ import * as PanelsStore from 'panels-store';
 import * as PanelsTypes from 'panels-types';
 import { Flux } from 'flummox';
 
-export default class PanelsFlux extends Flux {
+class ContextFlux extends Flux {
+  constructor() {
+    super();
+    this.contexts = {};
+  }
+
+  createContext(name, klass, init) {
+    this.contexts[name] = new klass();
+
+    if (typeof init === 'function') {
+      init(this.contexts[name]);
+    }
+  }
+
+  getContext(name) {
+    return this.contexts[name];
+  }
+}
+
+export default class PanelsFlux extends ContextFlux {
   constructor() {
     super();
 
@@ -23,7 +42,7 @@ export default class PanelsFlux extends Flux {
 
   setDocumentTitle(lastPanelUri, fullUri) {
     try {
-      window.document.title = this.getStore('panels').getByUri(lastPanelUri).title;
+      window.document.title = this.getStore('panels').getByUri(lastPanelUri.panelUri).title;
     } catch(exception) {
       console.error(exception);
     }

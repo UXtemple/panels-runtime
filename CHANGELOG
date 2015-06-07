@@ -1,6 +1,19 @@
 # Change log
 
 ## [unreleased]
+
+## [0.3.0] - 2015-06-07
+### Added
+
+- Initial stab at app-specific contexts - it behaves like a new type in Flux.
+- Teleports support! :)
+
+### Changed
+
+- Panels specific context now lives in a `panels` prop. This will be revisited soon and may change.
+- Fixed PropTypes all over the place.
+- Upgraded panels-router, panels-store and panels-ui.
+
 ### Added
 
 - CSS vendor prefixes

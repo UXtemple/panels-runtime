@@ -1,6 +1,6 @@
 import Component from './component';
 import FluxComponent from 'flummox/component';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 export default class BlockContainer extends React.Component {
   get stores() {
@@ -10,20 +10,15 @@ export default class BlockContainer extends React.Component {
   }
 
   render() {
-    return (
-      <FluxComponent connectToStores={this.stores}>
-        <Component block={this.props.block} currentUri={this.props.currentUri} />
-      </FluxComponent>
-    );
+    return <FluxComponent connectToStores={this.stores}><Component {...this.props} /></FluxComponent>;
   }
-}
 
-BlockContainer.propTypes = {
-  currentUri: React.PropTypes.string.isRequired,
-  block: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    type: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object,
-    style: React.PropTypes.object
-  }).isRequired
+  static propTypes = {
+    context: PropTypes.object,
+    block: PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      data: PropTypes.object,
+      style: PropTypes.object
+    }).isRequired
+  }
 }

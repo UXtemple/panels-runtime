@@ -1,7 +1,5 @@
-# panels-app
+# panels-runtime
 
-Build apps on panels.
+A runtime to run apps on panels.
 
-Use Panels as runtime.
-
-**NOTE** This project was renamed into `panels-runtime`
+See `playground` for an example.

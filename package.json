@@ -55,7 +55,7 @@
     "lodash": "^3.9.3",
     "mocha": "^2.2.5",
     "node-libs-browser": "^0.5.2",
-    "panels-blocks": "^0.1.0",
+    "panels-blocks": "^0.2.0",
     "react-hot-loader": "^1.2.7",
     "sinon": "^1.15.3",
     "watchify": "^3.2.2",

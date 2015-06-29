@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
 
-PG=./playground
-
-./node_modules/.bin/watchify --no-bundle-external --extension .es6 -o $PG/playground.js -v -d $PG/playground.es6 &
-./node_modules/.bin/watchify `.bin/extract-dependencies` \
-  -r react/addons \
-  -r flummox/component \
-  -r panels-ui/blocks \
-  -v -o $PG/vendor.js ./package.json &
-./node_modules/.bin/livereloadify $PG &
-sudo .bin/server.es6
+.bin/server.es6 &
+.bin/webpack-server.es6

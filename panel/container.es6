@@ -1,20 +1,20 @@
-import Component from './component';
-import FluxComponent from 'flummox/component';
-import React, { PropTypes } from 'react';
+import { connect } from 'redux/react';
+import { getters as panelsGetters } from 'panels-store';
+import InnerComponent from './component';
+import panelShape from './panel-shape';
+import React, { Component, PropTypes } from 'react';
 
-export default class PanelContainer extends React.Component {
-  get stores() {
-    return {
-      panels: store => ({panel: store.getByUri(this.props.uri)})
-    };
-  }
-
+@connect(({store}, {uri}) => ({
+  panel: panelsGetters.find(store, uri)
+}))
+export default class PanelContainer extends Component {
   render() {
-    return <FluxComponent connectToStores={this.stores}><Component currentUri={this.props.currentUri} /></FluxComponent>;
+    return <InnerComponent {...this.props} />;
   }
 
   static propTypes = {
-    currentUri: PropTypes.string.isRequired,
+    context: PropTypes.string.isRequired,
+    panel: panelShape.isRequired,
     uri: PropTypes.string.isRequired
   }
 }

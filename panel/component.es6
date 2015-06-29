@@ -1,37 +1,45 @@
-import { Panel as PanelUi } from 'panels-ui';
-import BlockContainer from '../block/container';
+import { Actions as routerActions, getters as routerGetters } from 'panels-router';
+import { connect } from 'redux/react';
+import { getters as contextsGetters } from 'panels-contexts';
+import { getters as typesGetters } from 'panels-types';
+import { Provider } from 'redux/react';
+import panelShape from './panel-shape';
 import React, { Component, PropTypes } from 'react';
 
-export default class Panel extends Component {
+@connect(({contexts, router, types}, {context, panel: {app, typeName}}) => ({
+  after: routerGetters.after(router, context),
+  redux: contextsGetters.find(contexts, app),
+  Type: typesGetters.find(types, app, typeName)
+}))
+export default class PanelInnerContainer extends Component {
+  getChildContext() {
+    const isActive = path => this.props.after && `${this.props.context}${path}` === this.props.after.context;
+    const navigate = toUri => this.props.dispatch(routerActions.navigate(`${this.props.context}${toUri}`));
+    return { isActive, navigate };
+  }
+
   render() {
-    let blocks = <span>loading...</span>;
+    const { after, dispatch, panel: { data }, redux, Type } = this.props;
+    const type = () => <Type {...data} after={after} />;
+    return redux ? <Provider redux={redux}>{type}</Provider> : type();
+  }
 
-    if (this.props.panel) {
-      const context = {
-        flux: this.props.flux.getContext(this.props.panel.app) || {},
-        panels: {
-          navigate: (uri) => this.props.flux.getActions('router').navigate(`${this.props.currentUri}${uri}`),
-          nextUri: () => this.props.flux.getStore('router').nextUri(this.props.currentUri)
-        }
-      };
-
-      blocks = this.props.panel.blocks.map((block, i) => <BlockContainer key={i} block={block} context={context} />);
-    }
-
-    return <PanelUi style={this.props.panel.style}>{blocks}</PanelUi>;
+  static childContextTypes = {
+    isActive: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired
   }
 
   static propTypes = {
-    currentUri: PropTypes.string.isRequired,
-    panel: PropTypes.shape({
-      app: PropTypes.string.isRequired,
-      uri: PropTypes.string.isRequired,
-      style: PropTypes.object,
-      blocks: PropTypes.arrayOf(PropTypes.shape({
-        type: PropTypes.string.isRequired,
-        data: PropTypes.object,
-        style: PropTypes.object
-      })).isRequired
-    }) //.isRequired
+    after: PropTypes.shape({
+      context: PropTypes.string.isRequired,
+      uri: PropTypes.string.isRequired
+    }),
+    context: PropTypes.string.isRequired,
+    panel: panelShape.isRequired,
+    redux: PropTypes.shape({
+      subscribe: PropTypes.func.isRequired,
+      dispatch: PropTypes.func.isRequired,
+      getState: PropTypes.func.isRequired
+    })
   }
 }

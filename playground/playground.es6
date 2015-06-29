@@ -1,29 +1,18 @@
 import * as DUMMY_DATA from './dummy-data';
-import * as PanelsApp from '../index';
-import FluxComponent from 'flummox/component';
-import PanelsContainer from '../panels/container';
+import * as PanelsRuntime from '../index';
 import React from 'react';
 
-const flux = new PanelsApp.Flux();
+const instance = PanelsRuntime.createPanelsRuntime(DUMMY_DATA);
 
 window.Playground = {
-  flux,
-  PanelsApp,
-  getPanelsStore() { return flux.getStore('panels') },
-  getTypesStore() { return flux.getStore('types') }
+  instance,
+  PanelsRuntime
 };
 
-console.log('Welcome to panels-app playground.');
-console.log('https://app.usepanels.com');
-console.log('Playground module', Playground);
+const { App } = instance;
 
-flux.getActions('panels').load(DUMMY_DATA.PANELS);
-flux.getActions('types').load(DUMMY_DATA.TYPES);
-flux.getActions('router').navigate(location.href);
+React.render(<App />, document.getElementById('playground-container'));
 
-React.render(
-  <FluxComponent flux={flux}>
-    <PanelsContainer />
-  </FluxComponent>,
-  document.getElementById('playground-container')
-);
+console.log('Welcome to panels-runtime playground.');
+console.log('https://github.com/UXtemple/panels-runtime');
+console.log('Playground module', window.Playground);

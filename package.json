@@ -1,7 +1,7 @@
 {
-  "name": "panels-app",
-  "version": "0.3.1",
-  "description": "Build apps on panels",
+  "name": "panels-runtime",
+  "version": "0.1.0",
+  "description": "Runtime to run apps on panels",
   "main": "index.js",
   "scripts": {
     "test": ".bin/test",
@@ -11,11 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/UXtemple/panels-app"
+    "url": "https://github.com/UXtemple/panels-runtime"
   },
   "keywords": [
     "panels",
-    "app",
+    "apps",
+    "runtime",
     "UXtemple"
   ],
   "author": "UXtemple <hi@uxtemple.com>",
@@ -25,40 +26,45 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UXtemple/panels-app/issues"
+    "url": "https://github.com/UXtemple/panels-runtime/issues"
   },
-  "homepage": "https://github.com/UXtemple/panels-app",
+  "homepage": "https://github.com/UXtemple/panels-runtime",
   "dependencies": {
-    "flummox": "^4.0.0-alpha2",
-    "immutable": "^3.7.3",
-    "panels-router": "^0.4.0",
-    "panels-store": "^0.2.0",
-    "panels-types": "^0.1.0",
-    "panels-ui": "^0.2.2",
+    "redux": "^0.12.0",
+    "panels-contexts": "^0.2.0",
+    "panels-router": "^0.6.0",
+    "panels-store": "^0.4.0",
+    "panels-types": "^0.3.0",
+    "panels-ui": "^0.3.0",
     "react": "^0.13.3",
-    "react-immutable-proptypes": "^0.1.8"
+    "seamless-immutable": "^2.4.1"
   },
   "devDependencies": {
-    "babel": "^5.4.4",
-    "babel-eslint": "^3.1.14",
-    "babelify": "^6.1.1",
-    "browserify": "^10.2.1",
-    "envify": "^3.4.0",
+    "babel": "^5.5.7",
+    "babel-core": "^5.6.14",
+    "babel-eslint": "^3.1.15",
+    "babel-loader": "^5.2.2",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
     "eslint": "^0.22.1",
     "eslint-plugin-react": "^2.5.0",
     "koa": "^0.21.0",
     "koa-sendfile": "^1.1.1",
     "koa-static": "^1.4.9",
     "livereloadify": "^2.0.0",
+    "lodash": "^3.9.3",
     "mocha": "^2.2.5",
-    "node-static": "^0.7.6",
-    "sinon": "^1.14.1",
-    "watchify": "^3.2.1"
+    "node-libs-browser": "^0.5.2",
+    "panels-blocks": "^0.1.0",
+    "react-hot-loader": "^1.2.7",
+    "sinon": "^1.15.3",
+    "watchify": "^3.2.2",
+    "webpack": "^1.10.0",
+    "webpack-dev-server": "^1.10.1"
   },
   "browserify": {
     "transform": [
-      "babelify",
-      "envify"
+      "babelify"
     ]
   }
 }

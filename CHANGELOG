@@ -2,31 +2,10 @@
 
 ## [unreleased]
 
-## [0.3.0] - 2015-06-07
+## [0.1.0] - 2015-06-29
 ### Added
-
-- Initial stab at app-specific contexts - it behaves like a new type in Flux.
-- Teleports support! :)
-
-### Changed
-
-- Panels specific context now lives in a `panels` prop. This will be revisited soon and may change.
-- Fixed PropTypes all over the place.
-- Upgraded panels-router, panels-store and panels-ui.
-
-### Added
-
-- CSS vendor prefixes
-
-## [0.2.0] - 2015-05-30
-### Added
-
-- "Forward URIs" to truly enable composition through teleports,
-- Set actions as active if a panel after theirs holds its URI.
-
-## [0.1.0] - 2015-05-23
-### Added
-
-- Flummox Actions and Store.
-- Immutable TypeRecord.
-- Playground with dummy data and a flux app.
+- `Panels`, `PanelContainer` and `Panel` components.
+- `createPanelsRuntime` makes a new runtime taking initial data returning an `App` component and a
+  `redux` instance.
+- Playground with dummy data.
+- Tests scaffold.

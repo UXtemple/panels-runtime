@@ -6,14 +6,15 @@ import serve from 'koa-static';
 
 let app = koa();
 app.use(serve('./playground'));
-app.use(serve('./playground/usepanels.com.dev'));
 app.use(catchAll);
-app.listen(80);
+app.listen(3000);
 
 function *catchAll(next) {
   yield* sendfile.call(this, './playground/index.html');
 
   if (!this.status) {
-    this.throw(404)
-  };
+    this.throw(404);
+  }
 }
+
+console.log('koa-catch-all is ready on http://localhost:3000');

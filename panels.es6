@@ -15,27 +15,7 @@ export default class PanelsContainer extends Component {
     temp: {}
   };
 
-  cancelRaf() {
-    cancelAnimationFrame(this.animationState.rafId);
-    this.animationState.rafId = null;
-  }
-  componentDidMount() {
-    findDOMNode(this.refs.container).scrollLeft = findDOMNode(this.refs.lastPanel).offsetLeft;
-  }
-  componentDidUpdate() {
-    this.animationState.temp = {
-      currV: 0,
-      currVals: findDOMNode(this.refs.container).scrollLeft,
-      now: null
-    };
-    this.animationState.endValue = findDOMNode(this.refs.lastPanel).offsetLeft;
-    this.raf(true, false);
-  }
-  componentWillUnmount() {
-    this.cancelRaf();
-  }
-
-  raf(justStarted, isLastRaf) {
+  animate(justStarted=true, isLastRaf=false) {
     if (justStarted && this.animationState.rafId !== null) {
       return;
     }
@@ -49,12 +29,47 @@ export default class PanelsContainer extends Component {
         if (isLastRaf) {
           this.animationState.rafId = null;
         } else {
-          this.raf(false, true);
+          this.animate(false, true);
         }
       } else {
-        this.raf(false, false);
+        this.animate(false);
       }
     });
+  }
+  cancelAnimation() {
+    cancelAnimationFrame(this.animationState.rafId);
+    this.animationState.rafId = null;
+  }
+  componentDidMount() {
+    findDOMNode(this.refs.container).scrollLeft = findDOMNode(this.refs.lastPanel).offsetLeft;
+  }
+  componentDidUpdate() {
+    this.animationState.temp = {
+      currV: 0,
+      currVals: findDOMNode(this.refs.container).scrollLeft,
+      now: null
+    };
+    this.animationState.endValue = findDOMNode(this.refs.lastPanel).offsetLeft;
+    this.animate();
+  }
+  componentWillUnmount() {
+    this.cancelAnimation();
+  }
+  onWheel(event) {
+    this.cancelAnimation();
+
+    event.preventDefault();
+
+    this.animationState.temp = {
+      currV: 0,
+      currVals: findDOMNode(this.refs.container).scrollLeft,
+      now: null
+    };
+
+    this.animationState.endValue = event.deltaX > 0 ?
+      360 : -360; // findDOMNode(this.refs.lastPanel).offsetLeft :
+
+    this.animate();
   }
 
   render() {
@@ -62,7 +77,7 @@ export default class PanelsContainer extends Component {
       <PanelContainer key={i} context={context} uri={uri} ref={i === list.length - 1 && 'lastPanel'} />);
 
     return (
-      <div style={style.container} ref='container' onWheel={::this.cancelRaf}>
+      <div style={style.container} ref='container' onWheel={::this.onWheel}>
         <div style={style.pushLeft} />
         <Panels>{panels}</Panels>
         <div style={style.pushRight} />

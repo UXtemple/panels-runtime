@@ -15,6 +15,7 @@ class UsePanelsHome extends Component {
         <Title style={style.title}>Functional web editing experience with a futuristic twist.</Title>
         <Action href='http://runtime.usepanels.com.dev:3000/' style={style.firstAction}>Runtime</Action>
         <Action href='more-stuff/' style={style.action}>More stuff</Action>
+        <p>stuff</p>
         <div>{`Count is ${this.props.counter}`}</div>
         <button style={style.button} onClick={add}>+1</button>
         <button style={style.button} onClick={substract}>-1</button>

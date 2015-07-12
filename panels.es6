@@ -1,11 +1,11 @@
 import { connect } from 'redux/react';
 import { findDOMNode } from 'react-dom';
 import { getters } from 'panels-router';
-import { noSpeed } from 'react-motion/lib/utils';
+import { noSpeed } from './animate/utils';
 import { Panels } from 'panels-ui';
 import PanelContainer from './panel/container';
 import React, { Component, PropTypes } from 'react';
-import animate from 'react-motion/lib/spring/animate';
+import animate from './animate';
 
 @connect(({router}) => ({panels: getters.panels(router)}))
 export default class PanelsContainer extends Component {

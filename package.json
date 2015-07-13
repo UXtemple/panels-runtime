@@ -1,6 +1,6 @@
 {
   "name": "panels-runtime",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A runtime to run apps on panels",
   "main": "index.js",
   "scripts": {
@@ -57,7 +57,7 @@
     "node-libs-browser": "^0.5.2",
     "panels-blocks": "^0.2.0",
     "react-dom": "^0.14.0-beta1",
-    "react-hot-loader": "gaearon/react-hot-loader",
+    "react-hot-loader": "^1.2.8",
     "sinon": "^1.15.4",
     "watchify": "^3.2.3",
     "webpack": "^1.10.1",

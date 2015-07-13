@@ -2,6 +2,15 @@
 
 ## [unreleased]
 
+## [0.2.0] - 2015-07-13
+### Added
+- Animation and centre panels.
+
+### Changed
+- Upgraded to `react@0.14.0-beta1`.
+
+### Changed
+
 ## [0.1.0] - 2015-06-29
 ### Added
 - `Panels`, `PanelContainer` and `Panel` components.

@@ -1,6 +1,6 @@
 {
   "name": "panels-runtime",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A runtime to run apps on panels",
   "main": "index.js",
   "scripts": {

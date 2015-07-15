@@ -2,6 +2,10 @@
 
 ## [unreleased]
 
+## [0.3.0] - 2015-07-15
+### Added
+- Background support in app, always looking at the focus panel. The transition needs work there...
+
 ## [0.2.0] - 2015-07-13
 ### Added
 - Animation and centre panels.

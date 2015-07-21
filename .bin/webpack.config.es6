@@ -24,11 +24,7 @@ export default {
     loaders: [{
       test: /\.es6$/,
       loaders: ['react-hot', 'babel'],
-      exclude: /node_modules|blocks|react-animation|ui/
-    }, {
-      test: /\.jsx?$/,
-      loaders: ['babel'],
-      include: /react-animation/
+      exclude: /node_modules|blocks|ui/
     }, {
       test: /\.es6$/,
       loaders: ['babel'],

@@ -2,6 +2,10 @@
 
 ## [unreleased]
 
+## [0.4.0] - 2015-07-21
+### Changed
+- Implemented dynamic width on panels.
+
 ## [0.3.0] - 2015-07-15
 ### Added
 - Background support in app, always looking at the focus panel. The transition needs work there...

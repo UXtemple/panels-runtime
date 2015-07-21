@@ -19,8 +19,8 @@ export default class PanelInnerContainer extends Component {
   }
 
   render() {
-    const { after, dispatch, panel: { data }, redux, Type } = this.props;
-    const type = () => <Type {...data} after={after} style={this.props.style} />;
+    const { after, dispatch, panel: { data }, redux, Type, width } = this.props;
+    const type = () => <Type {...data} width={width} />;
     return redux ? <Provider redux={redux}>{type}</Provider> : type();
   }
 

@@ -5,12 +5,14 @@ import i from 'seamless-immutable';
 import React, { Component, PropTypes } from 'react';
 
 @connect(({counter}) => ({counter}))
-class UsePanelsHome extends Component {
+class UsePanelsHome {
   render() {
-    const add = () => this.props.dispatch({type: 'USEPANELS:ADD', number: 1});
-    const substract = () => this.props.dispatch({type: 'USEPANELS:SUBSTRACT', number: 1});
+    const { dispatch, width } = this.props;
+    const add = () => dispatch({type: 'USEPANELS:ADD', number: 1});
+    const substract = () => dispatch({type: 'USEPANELS:SUBSTRACT', number: 1});
+
     return (
-      <Panel style={style.panel}>
+      <Panel style={style.panel} width={width}>
         <Image title='Private beta' src='https://b8d246d71f5fc00a53a1-2fc1a81448061dd0231bdad3c041874d.ssl.cf1.rackcdn.com/cb6034ba-5c3d-42f4-b45c-9fddfe017d3d/fbf0d8f8899b1b85c6ba5c49ad40ecca/original.svg' style={style.image} />
         <Title style={style.title}>Functional web editing experience with a futuristic twist.</Title>
         <Action href='http://runtime.usepanels.com.dev:3000/' style={style.firstAction}>Runtime</Action>
@@ -29,10 +31,12 @@ class UsePanelsHome extends Component {
 }
 
 @connect(({counter}) => ({counter}))
-class UsePanelsMoreStuff extends Component {
+class UsePanelsMoreStuff {
   render() {
+    const { width } = this.props;
+
     return (
-      <Panel>
+      <Panel width={width}>
         <Title style={style.title}>More stuff...</Title>
         <div>{`The counter is at ${this.props.counter}`}</div>
       </Panel>
@@ -40,10 +44,12 @@ class UsePanelsMoreStuff extends Component {
   }
 }
 
-class PanelsRuntimeHome extends Component {
+class PanelsRuntimeHome {
   render() {
+    const { width } = this.props;
+
     return (
-      <Panel>
+      <Panel width={width}>
         <Title style={style.title}>Panels runtime</Title>
         <Action href='http://usepanels.com.dev:3000/' style={style.firstAction}>Use Panels</Action>
       </Panel>

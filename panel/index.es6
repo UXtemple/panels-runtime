@@ -4,9 +4,7 @@ import InnerComponent from './component';
 import panelShape from './panel-shape';
 import React, { Component, PropTypes } from 'react';
 
-@connect(({store}, {uri}) => ({
-  panel: panelsGetters.find(store, uri)
-}))
+@connect((state, {uri}) => ({panel: panelsGetters.find(state.store, uri)}))
 export default class PanelContainer extends Component {
   render() {
     return <InnerComponent {...this.props} />;

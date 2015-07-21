@@ -4,11 +4,15 @@ import { getters } from 'panels-store';
 import { noSpeed } from '../animate/utils';
 import { Panels } from 'panels-ui';
 import animate from '../animate';
+import debounce from 'lodash.debounce';
 import PanelContainer from '../panel';
+import raf from 'raf';
 import React, { Component, PropTypes } from 'react';
 import routeShape from './route-shape';
 
-@connect(({store}, {panels}) => ({appData: getters.find(store, panels[panels.length - 1].uri).appData}))
+const UPDATE_PUSH_LEFT_INTERVAL = 50;
+
+@connect((state, {panels}) => ({appData: getters.find(state.store, panels[panels.length - 1].uri).appData}))
 export default class PanelsContainer extends Component {
   animationState = {
     endValue: 0,
@@ -21,14 +25,30 @@ export default class PanelsContainer extends Component {
     this.animationState.rafId = null;
   }
   componentDidMount() {
-    findDOMNode(this.refs.container).scrollLeft = findDOMNode(this.refs.lastPanel).offsetLeft;
+    this.updatePushLeft();
+
+    this.updatePushLeftDebounced = debounce(() => this.updatePushLeft(), UPDATE_PUSH_LEFT_INTERVAL);
+    window.addEventListener('resize', this.updatePushLeftDebounced, false);
+    window.addEventListener('orientationchange', this.updatePushLeftDebounced, false);
   }
+  componenWillUnmount() {
+    window.removeEventListener('resize', this.updatePushLeftDebounced);
+    window.removeEventListener('orientationchange', this.updatePushLeftDebounced);
+  }
+
+  updatePushLeft() {
+    findDOMNode(this.refs.pushLeft).style.width =
+      `calc(50vw - ${findDOMNode(this.refs.lastPanel).getClientRects()[0].width / 2}px)`;
+  }
+
   componentDidUpdate() {
     this.animationState.temp = {
       currV: 0,
       currVals: findDOMNode(this.refs.container).scrollLeft,
       now: null
     };
+
+    this.updatePushLeft();
     this.animationState.endValue = findDOMNode(this.refs.lastPanel).offsetLeft;
     this.raf(true, false);
   }
@@ -40,7 +60,7 @@ export default class PanelsContainer extends Component {
     if (justStarted && this.animationState.rafId !== null) {
       return;
     }
-    this.animationState.rafId = requestAnimationFrame(() => {
+    this.animationState.rafId = raf(() => {
       this.animationState.temp = animate(this.animationState.temp, {endValue: this.animationState.endValue, justStarted});
 
       findDOMNode(this.refs.container).scrollLeft = this.animationState.temp.currVals;
@@ -80,7 +100,7 @@ export default class PanelsContainer extends Component {
 
     return (
       <div style={containerStyle} ref='container' onWheel={::this.cancelRaf}>
-        <div style={style.pushLeft} />
+        <div ref='pushLeft' style={style.pushLeft} />
         <Panels>{panels}</Panels>
         <div style={style.pushRight} />
       </div>
@@ -96,7 +116,10 @@ export default class PanelsContainer extends Component {
 const style = {
   container: {
     flexDirection: 'row',
-    overflow: 'auto',
+    WebkitFlexDirection: 'row',
+    overflowX: 'auto',
+    overflowY: 'hidden',
+    WebkitOverflowScrolling: 'touch',
     transition: 'background-image 1s ease, background-color 1s ease'
   },
   pushLeft: {
